@@ -1,0 +1,13 @@
+{
+    "dns.flags.response": 1,
+    "dns.flags.recavail": 0,
+    "dns.qry.name": "www.nawrocki.tns.",
+    "dns.qry.type": 1,
+    "dns.flags.rcode": 0,
+    "dns.flags.authoritative": 1,
+    "dns.count.answers": 1,
+    "dns.resp.name": "www.nawrocki.tns.",
+    "dns.resp.type": 1,
+    "dns.a": "127.0.0.101",
+    "dns.resp.ttl": 300
+}
