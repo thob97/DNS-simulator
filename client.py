@@ -3,8 +3,8 @@ import threading
 import json
 from classes import Socket
 
-IP = "0.0.0.0"
-PORT = 1234
+IP = "127.0.0.11"
+PORT = 53053
 DATASIZE = 1024
 
 
@@ -18,9 +18,15 @@ def request_ip(server: Socket):
         #EXAMPLE
         example_json = '{ "ip":"127.0.0.1" }'
 
-        server.send_json(example_json)
-        json_answer = server.recv_json()
-        print('From server:',json_answer)
+        #server.send_json(example_json)
+        #json_answer = server.recv_json()
+        #print('From server:',json_answer)
+
+        server.socket.send(ddns.encode('utf-8'))
+        response = server.socket.recv(512).decode('utf-8')
+
+        print(response)
+
 
 def main():
     #connect socket(IP4, tcp)
