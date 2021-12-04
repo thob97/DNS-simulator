@@ -2,11 +2,12 @@ import logging
 import sys
 
 sys_log = ''
-log_directory = 'system_files/log/'
-system_log = 'system_files/sys_log.log'
+log_directory = 'logs/'
+system_log = 'sys_log'
 loggers = {}
 
 def new_log(name, level = logging.INFO):
+    name = f'{log_directory}{name}.log'
     #if logger already exists
     global loggers
     if loggers.get(name):
@@ -14,7 +15,8 @@ def new_log(name, level = logging.INFO):
 
     #else logger settings
     log = logging.getLogger(name)
-    formatter = logging.Formatter('%(asctime)s:%(levelname)s:%(message)s')
+    #options: %(asctime)s:%(levelname)s:%(message)s
+    formatter = logging.Formatter('%(asctime)s:%(message)s')
     fileHandler = logging.FileHandler(name)
     fileHandler.setFormatter(formatter)
 

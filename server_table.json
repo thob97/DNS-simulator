@@ -1,0 +1,71 @@
+{
+    "IP":"127.0.0.11",
+    "CHILD":{
+        "telematik":{
+            "IP": "127.0.0.12",
+            "CHILD":{
+                "switch.telematik":{
+                    "IP": "127.0.0.13",
+                    "CHILD":{
+                        "www.switch.telematik":{
+                            "IP": "127.0.0.14",
+                            "CHILD":"None"
+                        },
+                        "mail.switch.telematik":{
+                            "IP": "127.0.0.15",
+                            "CHILD":"None"
+                        }
+                    }
+                },
+                "router.telematik":{
+                    "IP": "127.0.0.16",
+                    "CHILD":{
+                        "news.router.telematik":{
+                            "IP": "127.0.0.17",
+                            "CHILD":"None"
+                        },
+                        "shop.router.telematik":{
+                            "IP": "127.0.0.18",
+                            "CHILD":"None"
+                        }
+                    }
+                }
+            }
+        },
+        "fuberlin":{
+            "IP": "127.0.0.26",
+            "CHILD":{
+                "homework.fuberlin":{
+                    "IP": "127.0.0.19",
+                    "CHILD":{
+                        "easy.homework.fuberlin":{
+                            "IP": "127.0.0.20",
+                            "CHILD":"None"
+                        },
+                        "hard.homework.fuberlin":{
+                            "IP": "127.0.0.21",
+                            "CHILD":"None"
+                        }
+                    }
+                },
+                "pcpools.fuberlin":{
+                    "IP": "127.0.0.22",
+                    "CHILD":{
+                        "linux.pcpools.fuberlin":{
+                            "IP": "127.0.0.23",
+                            "CHILD":"None"
+                        },
+                        "macos.pcpools.fuberlin":{
+                            "IP": "127.0.0.24",
+                            "CHILD":"None"
+                        },
+                        "windows.pcpools.fuberlin":{
+                            "IP": "127.0.0.25",
+                            "CHILD":"None"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
