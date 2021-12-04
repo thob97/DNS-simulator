@@ -49,6 +49,7 @@ class RecursiveResolver(threading.Thread):
             if dns_msg_entry is not None:
                 #if cached entry is authorative
                 if dns_msg_entry['dns_resp_name'] == dns_msg['dns_qry_name']:
+                    dns_msg_entry['dns_id'] = dns_msg['dns_id']
                     dns_msg = dns_msg_entry
                 else:
                     self.save_client_adr(dns_msg, client_adr)

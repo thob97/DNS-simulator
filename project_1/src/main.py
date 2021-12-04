@@ -135,6 +135,13 @@ def start_stub_and_send_test_request():
     print(f' Elapsed time:{end - start}')
 
     #Test 4 caching
+    dns_req = 'shop.router.telematik'
+    request = dns.creat_dns_request(
+        dns_qry_name=dns_req,
+        dns_qry_type=1,
+        dns_flags_recdesired=1,
+        dns_id =str(uuid.uuid4()),
+    )
     print('\nTEST 4 Milestone 3 cache')
     print(' This dns request should be successful and take around ~ 0.0sec as the hole request was already cached')
     print(f' stub_resolver asks for:{dns_req}')

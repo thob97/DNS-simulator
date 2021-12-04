@@ -11,7 +11,7 @@ DATASIZE = 512
 class StubResolver():
     def __init__(self):
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self.logger = loghandler.new_log('stub')
+        self.logger = loghandler.new_log('stub_resolver')
 
     def hanlde_dns_msg(self, dns_msg):
         #only accept dns respons (we are no server)
