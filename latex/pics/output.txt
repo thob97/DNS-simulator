@@ -1,0 +1,54 @@
+ALL SERVERS STARTED
+RESOLVER: STARTED
+
+Test 0 Milestone 1 stub_resolver
+ This dns request is send from the stub_resolver directly to the name_server(root)
+ stub_resolver asks for:fuberlin
+ stub_resolver interprets resp as:127.0.0.26
+ Elapsed time:0.10104513168334961
+
+TEST 1 Milestone 2 rekursive_resolver
+ This dns request and the following are requested by the stub_resolver and solved with the rekursive_resolver
+ This dns request should be successful and take around ~ 0.3sec as the rerkusive_resolver has to send 3 requests
+ stub_resolver asks for:easy.homework.fuberlin
+ stub_resolver interprets resp as:127.0.0.20
+ Elapsed time:0.30408525466918945
+
+TEST 2
+ This dns request should be successful and take around ~ 0.1sec as the rerkusive_resolver has to send 1 requests
+ stub_resolver asks for:telematik
+ stub_resolver interprets resp as:127.0.0.12
+ Elapsed time:0.1020052433013916
+
+TEST 3 Milestone 3 cache
+ This dns request should be successful and take around ~ 0.2sec as the rerkusive_resolver has to send 3 requests, but one was already cached
+ stub_resolver asks for:shop.router.telematik
+ stub_resolver interprets resp as:127.0.0.18
+ Elapsed time:0.20456624031066895
+
+TEST 4 Milestone 3 cache
+ This dns request should be successful and take around ~ 0.0sec as the hole request was already cached
+ stub_resolver asks for:shop.router.telematik
+ stub_resolver interprets resp as:127.0.0.18
+ Elapsed time:0.0007107257843017578
+
+TEST 5
+ This dns request should fail because stub_resolver requests a not supported function
+ stub_resolver asks for:easy.homework.fuberlin with dns_qry_type=3
+ stub_resolver interprets resp as:Not Implemented
+ Elapsed time:0.10173559188842773
+
+TEST 6
+ This dns request should fail because the nameserver does not find this domain
+ stub_resolver asks for:thisdomain.does.not.exist.fuberlin
+ stub_resolver interprets resp as:Non-Existent Domain
+ Elapsed time:0.10197663307189941
+
+TEST 7
+ Sleep 4 seconds
+ This dns request should be successful and take around ~ 0.3sec as the resolver has to send 3 requests and the previous accessed cache was removed (ttl)
+ stub_resolver asks for:shop.router.telematik
+ stub_resolver interprets resp as:127.0.0.18
+ Elapsed time:0.3042137622833252
+
+Done. Press Crtl+c to exit

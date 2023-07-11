@@ -1,0 +1,93 @@
+\input{src/header}
+
+\newcommand{\dozent}{Prof. Dr. Matthias Wählisch, Marcin Nawrocki, M.Sc.}
+\newcommand{\tutor}{-}
+\newcommand{\tutoriumNo}{01\\Materialien: Latex, Python}
+\newcommand{\ubungNo}{1}
+\newcommand{\veranstaltung}{Telematics Project overview}
+\newcommand{\semester}{WS21/22}
+\newcommand{\studenten}{David Ly \& Jonny Lam \& Thore Brehmer}
+
+% /////////////////////// BEGIN DOKUMENT /////////////////////////
+\begin{document}
+\input{src/titlepage}
+
+% /////////////////////// Components /////////////////////////
+\section{Components}
+In unsere Abgabe benutzen wir folgende Komponenten:
+\begin{itemize}
+    \item \textbf{stub\_resolver}
+        \begin{itemize}
+            \item Unser Stub Resolver (Client) fragt für Domains die zugehörige IP-Adresse beim Rekursiven Revolver an. Die Antwort vom Rekursiven Resolver wird vom Stub Resolver interpretiert. (Erfolgreich, Fehlgeschlagen usw.)
+        \end{itemize}
+    
+    \item \textbf{recursive\_revolser}
+        \begin{itemize}
+            \item Der Rekursiven Resolver empfängt Anfragen von Stub Resolvern und Antworten von Name Servers. Anfragen von Stub Resolvern werden versucht zu bearbeiten, indem sie weiter an den Name Server(Root) gesendet werden. Darauf werden die Name Server antworten. Diese Antwort muss entweder weiter bearbeitet werden (neue Anfrage an einen Naming Server senden) oder sie ist abgeschlossen (authoritative) und kann an den Stub Resolver zurück gesendet werden.
+        \end{itemize}
+        
+    \item \textbf{nameserver}
+        \begin{itemize}
+            \item Die Name Server enthalten für ihren Domain Namen eine IP-Adresse und kennen den Domain Namen und die IP-Adressen von unterlegenden Name Servern. Wenn sie eine Anfrage erhalten antworten sie mit dem Name Server den sie kennen, welcher das längste Suffix der Anfrage gleicht. 
+        \end{itemize}
+    
+    \item \textbf{loghanlder}
+        \begin{itemize}
+            \item Besitzt eine Methode zum erstellen von log Dateien.
+        \end{itemize}
+    
+    \item \textbf{cache}
+        \begin{itemize}
+            \item Besitzt einen dictionary in welchen man DNS Anfragen hinzufügen kann und das längste Präfix aus einer Anfrage ausgeben kann, welches sich bereits im dictionary befindet. Außerdem startet es beim erstellen des Speichers  einen Thread, welcher beim überschreiten der ttl einer DNS Anfrage, diese löscht. Wir im Rerkusiven Resolver benutzt.
+        \end{itemize}
+    
+    \item \textbf{dns.py}
+        \begin{itemize}
+            \item Besitzt nützliche Funktionen für das senden und empfangen von json Dateien über udp, sowie für das erstellen von DNS Anfragen und DNS Antworten.
+        \end{itemize} 
+    
+    \item \textbf{server\_table.json}
+        \begin{itemize}
+            \item Enthält die in der Aufgabe gestellten Name Server
+        \end{itemize}
+    
+    \item \textbf{main.py}
+        \item \begin{itemize}
+            \item Das main.py Skript lädt, aus der server\_table.json Datei, die Name Server und startet diese. Sie startet auch den Rekursiven Resolver und schickt mehrere Test DNS Anfragen, über den Stub Resolver, an den Rekursiven Resolver.
+        \end{itemize}
+    
+    \item \textbf{dns.flags}
+        \begin{itemize}
+            \item Wir benutzen die uns vorgegebenen und die im Tutorium gezeigten Flags. Die Flags dns.count.auth\_rr und dns.count.add\_rr, vom Tutorium, haben wir jedoch ausgelassen. Außerdem benutzen wir die Flag dns.id (Transaction ID), womit sich unser Rekursiver Resolver merken kann, welche Anfrage von welchem Stub Resolver kam. (Falls mehrere Stub Resolver gleichzeitig anfragen würden)
+        \end{itemize}
+\end{itemize}
+
+% /////////////////////// Beispiel Ablauf /////////////////////////
+\newpage
+\section{Ablauf Visualisiert}
+\begin{enumerate}[ ]
+    \item Aus Darstellungsgründen werden Anfragen und Antworten als Domain Name und IP-Adresse dargestellt. Eigentlich sind dies jedoch DNS-Anfragen mit Flags. Außerdem kennen sich Name Server nur mit der Tiefe 1. (Also kennt, in diesem Beispiel, der root Name Server den homework.fuberlin Name Server \underline{nicht}.)
+    \item \includegraphics[width=1\textwidth]{pics/1.png}
+\end{enumerate}
+
+
+
+% /////////////////////// Milestones /////////////////////////
+
+\section{Milestones}
+\begin{itemize}
+    \item \textbf{Implemented:} Your stub resolver is able to (directly) request an A record from the authorative server.
+    \item \textbf{Implemented:} Your recursive resolver is able to discover the authoritative server of a name, and resolve the A record for this name.
+    \item \textbf{Implemented:} Your stub resolver is able to resolve any name in the list via the recursive resolver and profits from faster replies in the case of cache hits at the recursive resolver.
+    \item \textbf{Not Implemented:} Your DNS implementation is used by an application (see HTTP proxy below).
+\end{itemize}  
+
+% /////////////////////// Tests /////////////////////////
+\newpage
+\section{Tests: main.py Ausgabe}
+\begin{enumerate}[]
+    \item \lstinputlisting[]{pics/output.txt}
+
+\end{enumerate}   
+
+\end{document}
