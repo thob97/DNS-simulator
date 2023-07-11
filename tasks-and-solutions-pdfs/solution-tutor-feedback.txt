@@ -1,0 +1,12 @@
++ sehr gute menge an tests, die die die art dauer der queries gut 
+visualisiert
++ partial caching (for root responses, nice) and error handling
+
+* in der overview zeichnung: hard.homework.fuberlin. ist als vierter auth NS
+  eingezeichnet, was ihr so gar nicht implementiert habt ;)
+* sende-delay ist nur one-way vom rek resolver zu auth. ns
+  (kein delay von auth NS, kein delay fuer client)
+* antworten vom rek resolv sollten nicht authoritativ sein (auch wenn sie es
+  vom NS waren)
+
+
