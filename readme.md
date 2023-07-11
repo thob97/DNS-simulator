@@ -1,4 +1,4 @@
-# Title
+# DNS Simulator
 
 Project for the Telematics course. The objective is to implement essential functionalities of a stub resolver, a recursive resolver, an authoritative DNS server, and to manage namespaces. The project involved the creation of dedicated threads for each DNS server, each listening on their own specific IP addresses and UDP port 53053 to handle incoming requests. Upon receiving a request, a new thread is spawned to process it. Requests are transmitted using JSON strings to demonstrate their utility and clarify their structure.
 
@@ -52,17 +52,13 @@ Behandelte Themen sind unter anderem folgende:
 In order for the scripts to work you will need the following packages:
  * `python3`
 
- ### Installation
-
-Installation of the dependencies on ubuntu:
- - `sudo apt install libsdl2-dev libsdl2-2.0-0 libdsl2-mixer-dev libsdl2-image-dev -y;`
-
+### Installation
 Cloning the repo:
  - `git clone https://github.com/thob97/DNS-simulator.git`
 
- ### Compile and run
-TODO
- - `cd DNS-simulator`
+### Compile and run
+The main.py file contains several examples to demonstrate the milestones. It can be executed using the following command:
+ - `cd DNS-simulator/project_1/src/`
  - `./main.py`
 
 ## Components
@@ -78,10 +74,10 @@ In our submission, we use the following components:
     - The Name Servers contain an IP address for their domain name and know the domain names and IP addresses of subordinate Name Servers. When they receive a request, they respond with the Name Server that matches the longest suffix of the query.
 
 - **loghanlder**
-    - It has a method for creating log files.
+    - Has a method for creating log files.
 
 - **cache**
-    - It has a dictionary in which DNS queries can be added, and it can output the longest prefix from a query that is already in the dictionary. Additionally, it starts a thread when creating the cache that deletes DNS queries when their TTL (time-to-live) is exceeded. It is used in the Recursive Resolver.
+    - Uses a dictionary in which DNS queries will be added. It will search the dictionary for longest prefix from a query, thus acting as a cache. Additionally, it starts a thread when creating the cache that deletes DNS queries when their TTL (time-to-live) is exceeded. It is used in the Recursive Resolver.
 
 - **dns.py**
     - It has useful functions for sending and receiving JSON files via UDP, as well as for creating DNS queries and DNS responses.
@@ -94,13 +90,17 @@ In our submission, we use the following components:
 
 - **dns.flags**
     - We use the given flags and the ones shown in the tutorial. However, we omitted the flags dns.count.auth_rr and dns.count.add_rr from the tutorial. Additionally, we use the dns.id flag (Transaction ID), which allows our Recursive Resolver to remember which query came from which Stub Resolver (in case multiple Stub Resolvers make requests simultaneously).
+ 
+  
 ## Visualized Flow
 1. For illustration purposes, queries and responses are represented as domain names and IP addresses. However, these are actually DNS queries with flags. Additionally, Name Servers only have knowledge up to depth 1. (In this example, the root Name Server does not know the homework.fuberlin Name Server.)
-2. ![Visualized Flow](_github_pictures_/1.png)
+   
+<img src="./_github_pictures/1.png"  width="80%" height="80%">
+   
 ## Milestones
-- **Implemented:** Your stub resolver is able to (directly) request an A record from the authoritative server.
-- **Implemented:** Your recursive resolver is able to discover the authoritative server of a name and resolve the A record for this name.
-- **Implemented:** Your stub resolver is able to resolve any name in the list via the recursive resolver and benefits from faster replies in the case of cache hits at the recursive resolver.
+- **Implemented:** Your stub resolver is able to (directly) request an A record from the authorative server.
+- **Implemented:** Your recursive resolver is able to discover the authoritative server of a name, and resolve the A record for this name.
+- **Implemented:** Your stub resolver is able to resolve any name in the list via the recursive resolver and profits from faster replies in the case of cache hits at the recursive resolver.
 - **Not Implemented:** Your DNS implementation is used by an application (see HTTP proxy below).
 
 ## Test Output
