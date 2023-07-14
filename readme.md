@@ -19,6 +19,7 @@ The recursive resolver incorporates a cache to improve performance and mimics ne
 - [Milestones](#milestones)
 - [Test Output](#test-output)
 - [Contribution](#contribution)
+- [See also](#see-also)
 
 
 ## Course content
@@ -165,3 +166,6 @@ Done. Press Crtl+c to exit
 
 * Thore Brehmer - solved project
 * Jonny Lam - 
+  
+## See also
+* [Uni Overview](https://github.com/thob97/uni_overview.git)
